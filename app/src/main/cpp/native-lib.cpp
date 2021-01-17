@@ -21,6 +21,9 @@ static void medianfilter(AndroidBitmapInfo* info, void* pixels){
         for (xx = 0; xx <= info->width-3; xx++) {
 
             int position = yy * info->width + xx;
+            redv.clear();
+            bluev.clear();
+            greenv.clear();
 
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->height);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",yy);
@@ -80,6 +83,7 @@ static void medianfilter(AndroidBitmapInfo* info, void* pixels){
 
 static void meanfilter(AndroidBitmapInfo* info, void* pixels){
     int xx, yy, red, green, blue;
+    std::vector<int>  redv, bluev, greenv;
     uint32_t* line;
 
 
@@ -92,6 +96,9 @@ static void meanfilter(AndroidBitmapInfo* info, void* pixels){
             int sumred = 0;
             int sumblue = 0;
             int sumgreen = 0;
+            redv.clear();
+            bluev.clear();
+            greenv.clear();
 
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->height);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",yy);
