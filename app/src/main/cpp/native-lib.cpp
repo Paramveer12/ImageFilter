@@ -11,7 +11,7 @@
 
 
 static void medianfilter(AndroidBitmapInfo* info, void* pixels){
-    int xx, yy, red, green, blue;
+    int xx, yy;
     std::vector<int>  redv, bluev, greenv;
     uint32_t* line;
 
@@ -25,9 +25,9 @@ static void medianfilter(AndroidBitmapInfo* info, void* pixels){
             bluev.clear();
             greenv.clear();
 
-            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->height);
+            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"totaly  %d",info->height);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",yy);
-            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->width);
+            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"totalx  %d",info->width);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",xx);
 
             bluev.push_back( (int) ((line[position] & 0x00FF0000) >> 16));
@@ -82,10 +82,12 @@ static void medianfilter(AndroidBitmapInfo* info, void* pixels){
 }
 
 static void meanfilter(AndroidBitmapInfo* info, void* pixels){
-    int xx, yy, red, green, blue;
+    int xx, yy;
     std::vector<int>  redv, bluev, greenv;
     uint32_t* line;
-
+    int sumred = 0;
+    int sumblue = 0;
+    int sumgreen = 0;
 
 
     for(yy = 0; yy <= info->height-3; yy++) {
@@ -93,16 +95,16 @@ static void meanfilter(AndroidBitmapInfo* info, void* pixels){
         for (xx = 0; xx <= info->width-3; xx++) {
 
             int position = yy * info->width + xx;
-            int sumred = 0;
-            int sumblue = 0;
-            int sumgreen = 0;
+            sumred = 0;
+            sumblue = 0;
+            sumgreen = 0;
             redv.clear();
             bluev.clear();
             greenv.clear();
 
-            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->height);
+            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"totaly  %d",info->height);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",yy);
-            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"total  %d",info->width);
+            __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"totalx  %d",info->width);
             __android_log_print(ANDROID_LOG_INFO, LOG_TAG,"current  %d",xx);
 
             bluev.push_back( (int) ((line[position] & 0x00FF0000) >> 16));

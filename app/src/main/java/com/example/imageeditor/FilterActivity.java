@@ -34,6 +34,7 @@ public class FilterActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
     public native void Jnimedian(Bitmap bitmap);
+    public native void Jnimean(Bitmap bitmap);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +102,7 @@ public class FilterActivity extends AppCompatActivity {
                 Thread t = new Thread(){
                     public void run(){
                         myBitmap1 = myBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                        Jnimedian(myBitmap1);
+                        Jnimean(myBitmap1);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
